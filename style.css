@@ -6,6 +6,10 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+
+    background-image: url('./images/background_lawn.png');
+    background-size: cover;
+    background-position: center;
 }
 
 .container {
@@ -27,6 +31,8 @@ body {
 }
 
 .title {
+    background-color: rgba(255, 255, 255, 0.8); /* Um pouco de transparência */
+    border-radius: 4px; /* Bordas arredondadas para a área de histórico */
     text-align: center; /* Centraliza o texto do título */
     width: 100%; /* Garante que o título ocupe a largura inteira */
     margin-top: 20px; /* Espaço acima do título */
@@ -35,36 +41,47 @@ body {
     /* Outras propriedades de estilo que você desejar aplicar ao título */
 }
 
-#chatContainer {
-    width: 100%;
-    max-width: 600px;
+.input-group {
+    display: flex; /* Ativa o Flexbox para o contêiner */
+    align-items: center; /* Centraliza os itens verticalmente */
+    justify-content: space-between; /* Maximiza o espaço entre os itens e as bordas do contêiner */
 }
+
 #messageBox {
-    width: 100%;
-    margin-bottom: 10px;
+    flex-grow: 1; /* Faz com que o campo de texto ocupe todo o espaço horizontal disponível */
+    margin-right: 10px; /* Adiciona um espaço entre o campo de texto e os botões */
 }
-#sendButton, #resetButton {
-    margin-right: 5px;
+
+#backButton, #homeButton{
+    background-color: hsl(211, 100%, 50%); /* Cor de fundo dos botões */
+    color: white; /* Cor do texto nos botões */
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-right: 10px;
+    align-items: right;
 }
-#chatHistory {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-top: 10px;
-    height: 300px;
-    overflow-y: auto;
+
+#backButton {
+    position: absolute; /* Isso garante que o botão Voltar não interfira na centralização do botão Início */
+    left: 10px; /* Mantém à esquerda, mas fora do fluxo normal do documento, permitindo a centralização do botão Início */
 }
+
 img {
     max-width: 80%;
     height: auto;
-    cursor: pointer; /* Muda o cursor para o estilo 'pointer' */
 }
 .teacherName{
+    background-color: rgba(255, 255, 255, 0.8); /* Um pouco de transparência */
+    border-radius: 4px; /* Bordas arredondadas para a área de histórico */
     width: 200px;
     margin: 20px;
     text-align: center;
-    cursor: pointer; /* Muda o cursor para o estilo 'pointer' */
 }
 .description {
+    background-color: rgba(255, 255, 255, 0.8); /* Um pouco de transparência */
+    border-radius: 4px; /* Bordas arredondadas para a área de histórico */
     margin: 20px;
     width: 200px;
     text-align: center;
@@ -78,4 +95,92 @@ img {
     width: 200px;
     height: 200px;
     border-radius: 20px;
+}
+
+.navigation-buttons {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: rgba(0, 123, 255, 0.8); /* Cor de fundo com transparência */
+    color: white; /* Cor do texto */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.center-container {
+    width: 100%; /* Isso permite que o container central ocupe todo o espaço horizontal */
+    display: flex;
+    justify-content: center; /* Isso centraliza seu conteúdo */
+}
+
+.message {
+    width: 100%; /* Faz cada contêiner de mensagem ocupar a linha inteira */
+    display: flex; /* Permite o uso de flexbox para alinhamento */
+    margin-bottom: 10px; /* Espaçamento entre mensagens */
+}
+
+.message .content {
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block; /* Mantém o conteúdo da mensagem compacto */
+    max-width: 80%; /* Limita a largura máxima da mensagem para melhor leitura */
+}
+
+.user .content {
+    background-color: #DCF8C6; /* Cor de fundo para mensagens do usuário */
+    margin-left: auto; /* Alinha o conteúdo à direita */
+    text-align: right;
+}
+
+.bot .content {
+    background-color: #F0F0F0; /* Cor de fundo para mensagens do professor */
+    text-align: left;
+}
+
+#chatContainer {
+    margin-top: 100px;
+    display: flex; /* Ativa o Flexbox para o contêiner */
+    flex-direction: column; /* Organiza os filhos do contêiner em uma coluna */
+    align-items: flex-end; /* Alinha os itens filhos à direita */
+    width: 100%; /* Define a largura */
+    max-width: 600px; /* Largura máxima */
+}
+
+#chatHistory {
+    width: 100%; /* Define a largura */
+    border: 2px solid #007BFF; /* Bordas da área de histórico do chat */
+    padding: 10px;
+    border-radius: 4px; /* Bordas arredondadas para a área de histórico */
+    margin-bottom: 10px; /* Espaçamento entre o histórico do chat e o grupo de botões */
+    margin-top: 70px;
+    height: 300px;
+    overflow-y: auto; /* Permite rolagem vertical se necessário */
+    background-color: rgba(255, 255, 255, 0.8); /* Um pouco de transparência */
+}
+
+#messageBox {
+    width: 100%;
+    flex-grow: 1; /* Permite que o campo de texto cresça e ocupe mais espaço */
+    border: 2px solid #007BFF; /* Bordas do campo de texto */
+    border-radius: 4px; /* Bordas arredondadas para o campo de texto */
+    padding: 10px; /* Espaço interno no campo de texto */
+    margin: 0;
+    margin-bottom: 20px; /* Espaço abaixo do campo de texto */
+}
+
+#sendButton, #resetButton {
+    background-color: #007BFF; /* Cor de fundo dos botões */
+    color: white; /* Cor do texto nos botões */
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-right: 10px;
+    align-items: right;
+}
+
+#sendButton:hover, #resetButton:hover {
+    background-color: #0056b3; /* Cor de fundo dos botões ao passar o mouse */
 }

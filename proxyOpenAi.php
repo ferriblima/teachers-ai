@@ -1,7 +1,13 @@
 <?php
 
-// Substitua pela sua chave de API da OpenAI
-$apiKey = '';
+// Cria a instância do Dotenv apontando para o diretório onde o seu arquivo .env está localizado e então carregam as variáveis de ambiente definidas nele
+// Idealmente este arquivo deve ser criado em um index.php ou em algum tipo de arquivo de configuração que é incluído em todos os scripts.
+require_once __DIR__ . '/vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__); // createImmutable cria uma instância que previne a sobrescrita de variáveis de ambiente já existentes
+$dotenv->load();
+
+// Importação da chave da api da open ai
+$apiKey = $_ENV['OPENAI_API_KEY'];
 
 // O header de Content-Type para JSON
 $headers = [

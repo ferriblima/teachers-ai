@@ -1,27 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // TO DO: parei aqui
-    // 1. Remover key do código que vai subir para o github
-    // 2. Enviar os prompts dos professores a depender do professor escolhido
-        // Responda como se fosse um professor de história e geografia aventureiro. Explique como se estivesse explicando para uma criança de 5 anos de idade e quero que as respostas possuam no máximo 150 caracteres.
-        // Responda como se fosse um professor de ciências naturais (física, química e biologia) fascinado por experiências escolares dessas matérias. Explique como se estivesse explicando para uma criança de 5 anos de idade e quero que as respostas possuam no máximo 150 caracteres.
-        // Responda como se fosse um professor de português apaixonado por música que procura dar exemplos baseados em letras de canções brasileiras. Explique como se estivesse explicando para uma criança de 5 anos de idade e quero que as respostas possuam no máximo 150 caracteres.
-    // 3. Nomear quem pergunta e quem responde na caixa de texto 
-    // 4. Embelezar
-
-    let messageHistory = []; // Variável que registra o histórico de mensagens enviadas e recebidas
-
-    // Adicionar um prompt específico
-    let promptMessage = 'Responda como se fosse um professor de história e geografia aventureiro. Explique como se estivesse explicando para uma criança de 5 anos de idade e quero que as respostas possuam no máximo 150 caracteres.';
-    messageHistory.push({
-        role: "user",
-        content: promptMessage
-    });
-
     const sendButton = document.getElementById('sendButton');
     const resetButton = document.getElementById('resetButton');
     const messageBox = document.getElementById('messageBox');
     const chatHistory = document.getElementById('chatHistory');
+
+    // Fazer com que o cursor vá direto para o messageBox para escrever a pergunta ao abrir a url chat.html
+    if (messageBox) {
+        messageBox.focus();
+    }
+
+    let messageHistory = []; // Variável que registra o histórico de mensagens enviadas e recebidas
+    let professorEscolhido = localStorage.getItem('buttonId'); // Traz o valor do buttonId salvo no local storage
+    
+    // Adicionar um prompt específico
+    selecionaProfessor(professorEscolhido);
+    console.log(messageHistory);
 
     // Enviar mensagem quando o botão Enviar é clicado
     sendButton.addEventListener('click', () => {
@@ -43,6 +37,48 @@ document.addEventListener('DOMContentLoaded', () => {
             messageBox.value = ''; // Limpa a caixa de mensagem
         }
     });
+
+    // Limpar histórico de conversa
+    resetButton.addEventListener('click', () => {
+        chatHistory.innerHTML = '';
+        messageHistory = []; // Limpa o histórico de mensagens
+        selecionaProfessor(professorEscolhido);
+    });
+
+    // Botão Voltar
+    const backButton = document.getElementById('backButton');
+    backButton.addEventListener('click', () => {
+        window.history.back(); // Usa o histórico do navegador para voltar à página anterior
+    });
+
+    // Botão Início
+    const homeButton = document.getElementById('homeButton');
+    homeButton.addEventListener('click', () => {
+        window.location.href = '/'; // Altera a localização para a raiz do site
+        // Se a sua página inicial tiver um caminho diferente, substitua '/' pelo caminho correto
+    });
+
+    // Função que escreve o prompt inicial baseado na ecolha do professor
+    function selecionaProfessor(professorEscolhido){
+        let promptMessage = "";
+        switch (professorEscolhido) {
+            case "professorHistoria":
+                promptMessage = 'Responda como se fosse um professor de história e geografia aventureiro. Explique como se estivesse explicando para uma criança de 5 anos de idade e quero que as respostas possuam no máximo 150 caracteres.';
+                break;
+            case "professorFisica":
+                promptMessage = 'Responda como se fosse um professor de ciências naturais (física, química e biologia) fascinado por experiências escolares dessas matérias. Explique como se estivesse explicando para uma criança de 5 anos de idade e quero que as respostas possuam no máximo 150 caracteres.';
+                break;
+            case "professorPortugues":
+                promptMessage = 'Responda como se fosse um professor de português apaixonado por música que procura dar exemplos baseados em letras de canções brasileiras. Explique como se estivesse explicando para uma criança de 5 anos de idade e quero que as respostas possuam no máximo 150 caracteres.';
+                break;
+            default:
+                promptMessage = 'Responda como se fosse um professor. Explique como se estivesse explicando para uma criança de 5 anos de idade e quero que as respostas possuam no máximo 150 caracteres.';
+        }
+        messageHistory.push({
+            role: "user",
+            content: promptMessage
+        });
+    }
 
     function sendMessageToChatGPT(message) {
 
@@ -74,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
             presence_penalty: 0
         })
         .then(function (response) {
+
             // Assume que a resposta inclui a mensagem gerada pela IA
             const botMessage = response.data.choices[0].message.content;
     
@@ -94,17 +131,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Mostrar mensagem
     function displayMessage(message, sender) {
-        const messageElement = document.createElement('div');
-        messageElement.textContent = message;
-        messageElement.className = sender; // Adicione uma classe para estilizar diferentemente mensagens do usuário e do bot
-        chatHistory.appendChild(messageElement);
-        chatHistory.scrollTop = chatHistory.scrollHeight; // Rola para a mensagem mais recente
-    }
-
-    // Limpar histórico de conversa
-    resetButton.addEventListener('click', () => {
-        chatHistory.innerHTML = '';
-        messageHistory = []; // Limpa o histórico de mensagens
-    });
+        const messageContainer = document.createElement('div');
+        const messageContent = document.createElement('div'); // Usa div para o conteúdo da mensagem
+    
+        messageContainer.classList.add('message');
+        messageContent.classList.add('content');
+    
+        // Define o título e o alinhamento baseado no remetente
+        // const titleText = sender === 'user' ? 'Curioso:' : 'Professor:';
+        const title = document.createElement('div');
+        // title.textContent = titleText;
+        title.style.fontWeight = 'bold';
+    
+        // Aplica a classe para alinhamento específico
+        messageContainer.classList.add(sender);
+    
+        messageContent.textContent = message;
+        messageContainer.appendChild(title);
+        messageContainer.appendChild(messageContent);
+    
+        chatHistory.appendChild(messageContainer);
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+    }    
 
 });
