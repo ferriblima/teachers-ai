@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: row; /* Alinha os elementos lado a lado */
+    justify-content: center; /* Centraliza horizontalmente */
+    flex-wrap: wrap; /* Permite a reorganização responsiva dos contêineres */
+    max-width: 1200px; /* Ou a largura máxima que desejar */
+    margin: auto; /* Centraliza o .container no meio da página */
+}
+
+.teachers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px; /* Ajuste o espaço entre os elementos conforme necessário */
+    flex: 0 1 auto;
+    /* max-width: 300px; */
+}
+
+.title {
+    text-align: center; /* Centraliza o texto do título */
+    width: 100%; /* Garante que o título ocupe a largura inteira */
+    margin-top: 20px; /* Espaço acima do título */
+    margin-bottom: 20px; /* Espaço abaixo do título */
+    font-size: 24px; /* Tamanho da fonte do título */
+    /* Outras propriedades de estilo que você desejar aplicar ao título */
+}
+
+#chatContainer {
+    width: 100%;
+    max-width: 600px;
+}
+#messageBox {
+    width: 100%;
+    margin-bottom: 10px;
+}
+#sendButton, #resetButton {
+    margin-right: 5px;
+}
+#chatHistory {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+    height: 300px;
+    overflow-y: auto;
+}
+img {
+    max-width: 80%;
+    height: auto;
+    cursor: pointer; /* Muda o cursor para o estilo 'pointer' */
+}
+.teacherName{
+    width: 200px;
+    margin: 20px;
+    text-align: center;
+    cursor: pointer; /* Muda o cursor para o estilo 'pointer' */
+}
+.description {
+    margin: 20px;
+    width: 200px;
+    text-align: center;
+}
+.start-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.imagem-arredondada {
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+}
