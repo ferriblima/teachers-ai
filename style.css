@@ -22,23 +22,31 @@ body {
 }
 
 .teachers {
+    background-color: #ffffff77;
+    padding-bottom: 20px;
+    border-radius: 10px; /* Bordas arredondadas para a área de histórico */
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 10px; /* Ajuste o espaço entre os elementos conforme necessário */
     flex: 0 1 auto;
     /* max-width: 300px; */
+    justify-content: space-between; /* Espaça os itens uniformemente */
 }
 
 .title {
-    background-color: rgba(255, 255, 255, 0.8); /* Um pouco de transparência */
+    background-color: rgba(255, 255, 255, 0.274); /* Um pouco de transparência */
+    color: rgb(0, 0, 0);
     border-radius: 4px; /* Bordas arredondadas para a área de histórico */
     text-align: center; /* Centraliza o texto do título */
     width: 100%; /* Garante que o título ocupe a largura inteira */
     margin-top: 20px; /* Espaço acima do título */
     margin-bottom: 20px; /* Espaço abaixo do título */
     font-size: 24px; /* Tamanho da fonte do título */
-    /* Outras propriedades de estilo que você desejar aplicar ao título */
+    height: 60px;
+    display: flex;
+    align-items: center; /* Alinha os itens filhos ao centro verticalmente */
+    justify-content: center; /* Alinha os itens filhos ao centro horizontalmente (opcional) */
 }
 
 .input-group {
@@ -73,18 +81,21 @@ img {
     height: auto;
 }
 .teacherName{
-    background-color: rgba(255, 255, 255, 0.8); /* Um pouco de transparência */
     border-radius: 4px; /* Bordas arredondadas para a área de histórico */
     width: 200px;
     margin: 20px;
     text-align: center;
 }
 .description {
-    background-color: rgba(255, 255, 255, 0.8); /* Um pouco de transparência */
+    background-color: rgba(255, 255, 255, 0.474); /* Um pouco de transparência */
     border-radius: 4px; /* Bordas arredondadas para a área de histórico */
     margin: 20px;
     width: 200px;
+    height: 80px;
     text-align: center;
+    display: flex;
+    align-items: center; /* Alinha os itens filhos ao centro verticalmente */
+    justify-content: center; /* Alinha os itens filhos ao centro horizontalmente (opcional) */
 }
 .start-button {
     padding: 10px 20px;
@@ -154,8 +165,7 @@ img {
     padding: 10px;
     border-radius: 4px; /* Bordas arredondadas para a área de histórico */
     margin-bottom: 10px; /* Espaçamento entre o histórico do chat e o grupo de botões */
-    margin-top: 70px;
-    height: 300px;
+    height: 500px;
     overflow-y: auto; /* Permite rolagem vertical se necessário */
     background-color: rgba(255, 255, 255, 0.8); /* Um pouco de transparência */
 }
