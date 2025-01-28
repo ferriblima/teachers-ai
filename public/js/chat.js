@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        axios.post('./proxyOpenAi.php', {
+        axios.post('./src/proxyOpenAi.php', {
             model: "gpt-3.5-turbo",
             messages: messageHistory,
             temperature: 1,
@@ -110,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
             presence_penalty: 0
         })
         .then(function (response) {
+            console.log('Resposta Completa da API:', response.data); // Adicionado para depuração
 
             // Assume que a resposta inclui a mensagem gerada pela IA
             const botMessage = response.data.choices[0].message.content;

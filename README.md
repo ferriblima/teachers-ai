@@ -1,42 +1,84 @@
 
 # Teachers AI Project
 
-## Creator's Message
-My web programming knowledge is average, and this project was entirely created by Artificial Intelligence using version 4.0 of GPT chat, including codes, images, documentation, and resolving doubts throughout its development.
-The total time for its elaboration, including solving problems in API integration, was approximately 8 hours and 30 minutes. The major bottlenecks were: solving API integration issues, generating appropriate images, testing positioning, and styling of blocks, images, and buttons.
+## About The Project
 
-## Introduction
+Teachers AI Project is a web application designed to integrate artificial intelligence functionalities, using the OpenAI API, to create a virtual assistant aimed at curious children. Users can interact with the assistant through a chat interface to get educational content and assistance.
 
-This project is a web application that integrates artificial intelligence functionalities, using the OpenAI API, to create a virtual assistant aimed at curious children. Users can interact with the assistant through a chat interface to obtain information and assistance related to teaching and education.
+### Creator's Message
+The project was entirely created using **GPT 4.0**, from code to images and documentation. Total development time was approximately **8 hours and 30 minutes**, with the following major challenges:
+- API integration issues.
+- Generating suitable images.
+- Testing and styling the UI (positioning blocks, images, and buttons).
 
-## Environment Setup
+## Built With
 
-Before running the project, it is necessary to configure the OpenAI API access key. Follow the steps below to configure:
+- ![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+- ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+
+## Getting Started
+
+### Prerequisites
+
+- PHP installed on your system.
+- Composer to manage PHP dependencies.
+- Chat GPT account to provide the API key.
+
+### Installation
 
 1. Rename the `.env.example` file to `.env`.
-2. Open the `.env` file and replace the `OPENAI_API_KEY` value with your OpenAI API key.
+2. Add your OpenAI API key to the `.env` file:
+   ```env
+   OPENAI_API_KEY=your_api_key
+   ```
+   OpenAI Documentation: [https://platform.openai.com/docs/quickstart](https://platform.openai.com/docs/quickstart)
+3. Install the PHP dependencies:
+   ```bash
+   composer install
+   ```
+4. Open the `app/index.html` file in your browser, or start a local PHP server and navigate to the project directory.
 
-To obtain an OpenAI API key, follow the steps below:
+## Usage
 
-1. Visit [https://openai.com/](https://openai.com/) and create an account or log in.
-2. Navigate to the API section and follow the instructions to generate a new API key.
-3. Copy the generated key and paste it into the `.env` file, as described in the Environment Setup section.
+This project uses a chat interface to interact with a virtual assistant for educational purposes. The assistant:
+- Answers questions.
+- Engages children in a fun and interactive way.
 
-## Dependency Installation
+### Main Files
+- **proxyOpenAi.php**: A PHP script that acts as a proxy to interact with the OpenAI API, securing the API key.
+- **index.js** and **chat.js**: Handle user interaction and requests to the backend.
 
-This project requires PHP to run. Make sure PHP is installed in your environment. Additionally, some PHP dependencies may be required. Execute the following command in the terminal to install dependencies:
+## Roadmap
 
-```bash
-composer install
-```
+- [x] Basic integration with OpenAI API.
+- [ ] Add voice interaction support.
+- [ ] Create a mobile-friendly interface.
 
-## Main Files
+See the [open issues](https://github.com/ferriblima/teachers-ai/issues) for more features and known issues.
 
-- `proxyOpenAi.php`: A PHP script that acts as a proxy for requests to the OpenAI API. This prevents direct exposure of the API key on the client side.
-- `index.js` and `chat.js`: JavaScript files that implement the client-side logic to interact with the user and send requests to the PHP proxy.
-- `.env`: A file that stores environment variables, such as the OpenAI API key.
+## Contributing
 
-## How to Run the Project
+Contributions are welcome and greatly appreciated! Here’s how you can contribute:
+1. Fork the project.
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request.
 
-After setting up the environment and installing dependencies, you can start the project by opening the `index.html` file in a browser* or setting up a local PHP server and navigating to the project directory.
-*For security reasons, opening the file through the browser has the limitation of not making HTTP requests. In practice, the bot will not give correct responses, only the error message.
+## License
+
+Distributed under the **Unlicense License**. See `LICENSE.txt` for more information.
+
+## Contact
+
+**Fernando Lima**  
+[LinkedIn](https://www.linkedin.com/in/fernandoribeirolima/) - ferriblima@gmail.com  
+
+Project Link: [https://github.com/ferriblima/teachers-ai](https://github.com/ferriblima/teachers-ai)
+
+## Acknowledgments and References
+
+- [OpenAI](https://openai.com)
+- [Markdown Guide](https://www.markdownguide.org)
+- [Best README Template](https://github.com/othneildrew/Best-README-Template)
+- [Python Application Layouts: A Reference](https://realpython.com/python-application-layouts/)

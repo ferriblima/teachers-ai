@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             localStorage.setItem('buttonId', buttonId); // Armazena o buttonId no localStorage
 
-            window.location.href = 'chat.html';
+            window.location.href = './chat.html';
         });
     });
 
