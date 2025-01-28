@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Função que escreve o prompt inicial baseado na ecolha do professor
     function selecionaProfessor(professorEscolhido){
         let promptMessage = "";
+        console.log(professorEscolhido);
         switch (professorEscolhido) {
             case "professorHistoria":
                 promptMessage = 'Responda como se fosse um professor de história e geografia aventureiro. Explique como se estivesse explicando para uma criança de 5 anos de idade e quero que as respostas possuam no máximo 150 caracteres.';
