@@ -10,10 +10,10 @@ Teachers AI Project is a web application designed to integrate artificial intell
 Below are some screenshots demonstrating the interface of the project:
 
 #### Home Page
-![Home Page Screenshot](images/home_page.png)
+![Home Page Screenshot](public/images/home_page.png)
 
 #### Chat Interface and Example of a Conversation
-![Chat Interface Screenshot](images/chat_interface.png)
+![Chat Interface Screenshot](public/images/chat_interface.png)
 
 ### Creator's Message
 The project was entirely created using **GPT 4.0**, from code to images and documentation. Total development time was approximately **8 hours and 30 minutes**, with the following major challenges:
