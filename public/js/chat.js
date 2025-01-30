@@ -5,75 +5,75 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageBox = document.getElementById('messageBox');
     const chatHistory = document.getElementById('chatHistory');
 
-    // Fazer com que o cursor vá direto para o messageBox para escrever a pergunta ao abrir a url chat.html
+    // Automatically focus on the messageBox when opening chat.html
     if (messageBox) {
         messageBox.focus();
     }
 
-    let messageHistory = []; // Variável que registra o histórico de mensagens enviadas e recebidas
-    let professorEscolhido = localStorage.getItem('buttonId'); // Traz o valor do buttonId salvo no local storage
-    
-    // Adicionar um prompt específico
-    selecionaProfessor(professorEscolhido);
+    let messageHistory = []; // Variable to record the history of sent and received messages
+    let selectedProfessor = localStorage.getItem('buttonId'); // Retrieves the buttonId saved in local storage
+
+    // Add a specific prompt
+    selectProfessor(selectedProfessor);
     console.log(messageHistory);
 
-    // Enviar mensagem quando o botão Enviar é clicado
+    // Send a message when the Send button is clicked
     sendButton.addEventListener('click', () => {
         const userMessage = messageBox.value.trim();
         if (userMessage) {
             displayMessage(userMessage, 'user');
             sendMessageToChatGPT(userMessage);
-            messageBox.value = ''; // Limpa a caixa de mensagem
+            messageBox.value = ''; // Clears the message box
         }
     });
 
-    // Enviar mensagem quando a tecla Enter é pressionada
+    // Send a message when the Enter key is pressed
     messageBox.addEventListener('keypress', (event) => {
         const userMessage = messageBox.value.trim();
         if (event.key === 'Enter') {
-            event.preventDefault(); // Impede ação padrão do Enter, que pode incluir enviar um formulário
+            event.preventDefault(); // Prevents the default Enter action, which may include submitting a form
             displayMessage(userMessage, 'user');
             sendMessageToChatGPT(userMessage);
-            messageBox.value = ''; // Limpa a caixa de mensagem
+            messageBox.value = ''; // Clears the message box
         }
     });
 
-    // Limpar histórico de conversa
+    // Clear conversation history
     resetButton.addEventListener('click', () => {
         chatHistory.innerHTML = '';
-        messageHistory = []; // Limpa o histórico de mensagens
-        selecionaProfessor(professorEscolhido);
+        messageHistory = []; // Clears the message history
+        selectProfessor(selectedProfessor);
     });
 
-    // Botão Voltar
+    // Back button
     const backButton = document.getElementById('backButton');
     backButton.addEventListener('click', () => {
-        window.history.back(); // Usa o histórico do navegador para voltar à página anterior
+        window.history.back(); // Uses browser history to go back to the previous page
     });
 
-    // Botão Início
+    // Home button
     const homeButton = document.getElementById('homeButton');
     homeButton.addEventListener('click', () => {
-        window.location.href = '/'; // Altera a localização para a raiz do site
-        // Se a sua página inicial tiver um caminho diferente, substitua '/' pelo caminho correto
+        window.location.href = '/'; // Redirects to the root of the site
+        // If your homepage has a different path, replace '/' with the correct path
     });
 
-    // Função que escreve o prompt inicial baseado na ecolha do professor
-    function selecionaProfessor(professorEscolhido){
+    // Function to write the initial prompt based on the chosen professor
+    function selectProfessor(selectedProfessor) {
         let promptMessage = "";
-        console.log(professorEscolhido);
-        switch (professorEscolhido) {
+        console.log(selectedProfessor);
+        switch (selectedProfessor) {
             case "professorHistoria":
-                promptMessage = 'Responda como se fosse um professor de história e geografia aventureiro. Explique como se estivesse explicando para uma criança de 5 anos de idade e quero que as respostas possuam no máximo 150 caracteres.';
+                promptMessage = 'Respond as if you were a history and geography professor adventurer. Explain as if talking to a 5-year-old and keep responses within 150 characters.';
                 break;
             case "professorFisica":
-                promptMessage = 'Responda como se fosse uma professora de ciências naturais (física, química e biologia) fascinado por experiências escolares dessas matérias. Explique como se estivesse explicando para uma criança de 5 anos de idade e quero que as respostas possuam no máximo 150 caracteres. Use expressões energéticas, malucas e infames no meio das explicações. Permita-se utilizar mais 50 caracteres caso ache necessário para as expressões. O texto deve ter um formato humanizado. Sempre que possível sugira uma experiência escolar para ser feita com base na pergunta.';
+                promptMessage = 'Respond as if you were a natural science professor (physics, chemistry, and biology) passionate about school experiments. Explain as if talking to a 5-year-old and keep responses within 150 characters. Use energetic, quirky, and cheeky expressions in your explanations. If necessary, allow 50 more characters for expressions. The text should be humanized. Whenever possible, suggest a school experiment based on the question.';
                 break;
             case "professorPortugues":
-                promptMessage = 'Responda como se fosse um professor de português apaixonado por música que procura dar exemplos baseados em letras de canções brasileiras. Explique como se estivesse explicando para uma criança de 5 anos de idade e quero que as respostas possuam no máximo 150 caracteres.';
+                promptMessage = 'Respond as if you were a Portuguese language professor passionate about music, giving examples based on Brazilian song lyrics. Explain as if talking to a 5-year-old and keep responses within 150 characters.';
                 break;
             default:
-                promptMessage = 'Responda como se fosse um professor. Explique como se estivesse explicando para uma criança de 5 anos de idade e quero que as respostas possuam no máximo 150 caracteres.';
+                promptMessage = 'Respond as if you were a professor. Explain as if talking to a 5-year-old and keep responses within 150 characters.';
         }
         messageHistory.push({
             role: "user",
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function sendMessageToChatGPT(message) {
 
-        // Atualiza o histórico com a mensagem do usuário
+        // Updates the history with the user's message
         messageHistory.push({
             role: "user",
             content: message
@@ -91,13 +91,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         console.log(messageHistory);
 
-        // Verifica se a mensagem é uma string vazia ou não está definida.
-        // Se for, retorna ou define um valor padrão.
+        // Check if the message is empty or undefined
         if (!message || message.trim() === "") {
-            console.log("A mensagem enviada está vazia.");
-            // Você pode optar por retornar aqui ou definir um valor padrão para `message`.
-            // return;
-            message = " "; // Definindo um espaço como valor padrão para evitar o erro.
+            console.log("The sent message is empty.");
             return;
         }
 
@@ -111,49 +107,39 @@ document.addEventListener('DOMContentLoaded', () => {
             presence_penalty: 0
         })
         .then(function (response) {
-            console.log('Resposta Completa da API:', response.data); // Adicionado para depuração
+            console.log('Full API Response:', response.data); // Added for debugging
 
-            // Assume que a resposta inclui a mensagem gerada pela IA
             const botMessage = response.data.choices[0].message.content;
     
-            // Atualiza o histórico com a resposta do bot
+            // Updates the history with the bot's response
             messageHistory.push({
                 role: "assistant",
                 content: botMessage
             });
     
-            // Exibe a resposta na interface do usuário
+            // Displays the response in the user interface
             displayMessage(botMessage, 'bot');
         })
         .catch(function (error) {
             console.error(error);
-            displayMessage('Desculpe, ocorreu um erro ao processar sua mensagem.', 'bot');
+            displayMessage('Sorry, there was an error processing your message.', 'bot');
         });
     }
 
-    // Mostrar mensagem
     function displayMessage(message, sender) {
         const messageContainer = document.createElement('div');
-        const messageContent = document.createElement('div'); // Usa div para o conteúdo da mensagem
-    
+        const messageContent = document.createElement('div'); // Uses div for the message content
+
         messageContainer.classList.add('message');
         messageContent.classList.add('content');
-    
-        // Define o título e o alinhamento baseado no remetente
-        // const titleText = sender === 'user' ? 'Curioso:' : 'Professor:';
-        const title = document.createElement('div');
-        // title.textContent = titleText;
-        title.style.fontWeight = 'bold';
-    
-        // Aplica a classe para alinhamento específico
+
+        // Applies the class for specific alignment
         messageContainer.classList.add(sender);
-    
+
         messageContent.textContent = message;
-        messageContainer.appendChild(title);
         messageContainer.appendChild(messageContent);
-    
+
         chatHistory.appendChild(messageContainer);
         chatHistory.scrollTop = chatHistory.scrollHeight;
     }    
-
 });

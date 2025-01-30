@@ -1,0 +1,46 @@
+1. Definition of Objectives and Scope
+
+    Objective: Create a web chatbot where the user can choose which type of specialist they want to talk to. The target audience is curious children who are not yet familiar with how to construct descriptive prompts.
+    Scope: Chatbot, conversation history archiving until reset, web page for interaction, three specialists, three technical levels of explanation.
+
+2. Research and Analysis
+
+    Technologies: ChatGPT API, PHP, HTML, CSS, JavaScript, Axios.
+    Competitors and Inspiration: Reference site with a similar idea: https://kidschatgpt.com/appstore
+
+3. Planning
+
+    System Architecture: Define the basic architecture of your chatbot, including frontend (user interface) and backend (server logic, ChatGPT integration).
+
+    Stage    Activity                            Description                                    Technologies / Tools
+    1        Development Environment Setup      Prepare the development environment by        PHP, Apache/Nginx
+                                                installing PHP and a web server
+                                                (like Apache or Nginx).
+    2        User Interface Creation            Develop the web interface, including a        HTML, CSS, JavaScript
+                                                textbox for user questions, a send button,
+                                                and a reset button.
+    3        Integration with ChatGPT API       Implement the client-side logic (JavaScript)  JavaScript, Axios
+                                                to send user questions to the ChatGPT API
+                                                and receive responses using Axios.
+    4        Conversation History Storage       Implement the functionality to archive        JavaScript
+                                                questions and responses client-side,
+                                                using JavaScript lists, allowing the
+                                                conversation to have continuity and memory.
+    5        Reset Button Implementation        Implement the functionality to clear the      JavaScript
+                                                stored conversation history, allowing
+                                                a new conversation to start.
+    6        Testing                            Perform tests to ensure that all              JavaScript testing tools (Jest)
+                                                functionalities are operating as expected,
+                                                focusing on user interface testing and
+                                                message storage logic.
+    7        Project Documentation              Document the project, including an overview,  Markdown, Git repository (GitHub/GitLab)
+                                                instructions on how to configure and run
+                                                the bot, descriptions of the APIs and
+                                                libraries used, and usage instructions.
+
+    Important Notes:
+
+    - JavaScript and Axios are used for client-side logic, including the user interface and communication with the ChatGPT API. Axios is a popular JavaScript library based on promises for HTTP clients, facilitating HTTP calls.
+    - JavaScript lists are used to store the message history in the user's browser, eliminating the need for a database.
+    - HTML and CSS are used to structure and style the user interface, respectively.
+    - PHPUnit may not be necessary since the focus has shifted to client-side testing. Jest is recommended for testing JavaScript, covering both message storage logic and API integration.

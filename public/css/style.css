@@ -12,57 +12,66 @@ body {
     background-position: center;
 }
 
+.row {
+    display: flex;
+    justify-content: center; /* Centers the elements inside the row */
+    width: 100%;
+    flex-wrap: wrap; /* Allows items to wrap on small screens */
+    margin-bottom: 20px; /* Spacing between rows */
+}
+
 .container {
     display: flex;
-    flex-direction: row; /* Alinha os elementos lado a lado */
-    justify-content: center; /* Centraliza horizontalmente */
-    flex-wrap: wrap; /* Permite a reorganização responsiva dos contêineres */
-    max-width: 1200px; /* Ou a largura máxima que desejar */
-    margin: auto; /* Centraliza o .container no meio da página */
+    flex-direction: row; /* Aligns elements side by side */
+    justify-content: center; /* Centers horizontally */
+    flex-wrap: wrap; /* Allows responsive reorganization of containers */
+    max-width: 1200px; /* Or the maximum width you prefer */
+    margin: auto; /* Centers the .container in the middle of the page */
 }
 
 .teachers {
+    cursor: pointer; /* Indicates that it is possible to click */
     background-color: #ffffff77;
     padding-bottom: 20px;
-    border-radius: 10px; /* Bordas arredondadas para a área de histórico */
+    border-radius: 10px; /* Rounded borders for the history area */
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 10px; /* Ajuste o espaço entre os elementos conforme necessário */
+    margin: 10px; /* Adjusts spacing between elements as needed */
     flex: 0 1 auto;
     /* max-width: 300px; */
-    justify-content: space-between; /* Espaça os itens uniformemente */
+    justify-content: space-between; /* Spaces items evenly */
 }
 
 .title {
-    background-color: rgba(255, 255, 255, 0.274); /* Um pouco de transparência */
+    background-color: rgba(255, 255, 255, 0.274); /* A bit of transparency */
     color: rgb(0, 0, 0);
-    border-radius: 4px; /* Bordas arredondadas para a área de histórico */
-    text-align: center; /* Centraliza o texto do título */
-    width: 100%; /* Garante que o título ocupe a largura inteira */
-    margin-top: 20px; /* Espaço acima do título */
-    margin-bottom: 20px; /* Espaço abaixo do título */
-    font-size: 24px; /* Tamanho da fonte do título */
+    border-radius: 4px; /* Rounded borders for the history area */
+    text-align: center; /* Centers the title text */
+    width: 70%; /* Ensures the title takes up the full width */
+    margin-top: 20px; /* Space above the title */
+    margin-bottom: 20px; /* Space below the title */
+    font-size: 24px; /* Title font size */
     height: 60px;
     display: flex;
-    align-items: center; /* Alinha os itens filhos ao centro verticalmente */
-    justify-content: center; /* Alinha os itens filhos ao centro horizontalmente (opcional) */
+    align-items: center; /* Vertically centers child elements */
+    justify-content: center; /* Horizontally centers child elements (optional) */
 }
 
 .input-group {
-    display: flex; /* Ativa o Flexbox para o contêiner */
-    align-items: center; /* Centraliza os itens verticalmente */
-    justify-content: space-between; /* Maximiza o espaço entre os itens e as bordas do contêiner */
+    display: flex; /* Activates Flexbox for the container */
+    align-items: center; /* Vertically centers the items */
+    justify-content: space-between; /* Maximizes space between items and container edges */
 }
 
 #messageBox {
-    flex-grow: 1; /* Faz com que o campo de texto ocupe todo o espaço horizontal disponível */
-    margin-right: 10px; /* Adiciona um espaço entre o campo de texto e os botões */
+    flex-grow: 1; /* Makes the text field take up all available horizontal space */
+    margin-right: 10px; /* Adds space between the text field and buttons */
 }
 
-#backButton, #homeButton{
-    background-color: hsl(211, 100%, 50%); /* Cor de fundo dos botões */
-    color: white; /* Cor do texto nos botões */
+#backButton, #homeButton {
+    background-color: hsl(211, 100%, 50%); /* Background color of the buttons */
+    color: white; /* Button text color */
     border: none;
     border-radius: 4px;
     padding: 10px 20px;
@@ -72,37 +81,41 @@ body {
 }
 
 #backButton {
-    position: absolute; /* Isso garante que o botão Voltar não interfira na centralização do botão Início */
-    left: 10px; /* Mantém à esquerda, mas fora do fluxo normal do documento, permitindo a centralização do botão Início */
+    position: absolute; /* Ensures the Back button does not interfere with the Home button centering */
+    left: 10px; /* Keeps it on the left, but outside the normal document flow, allowing Home button centering */
 }
 
 img {
     max-width: 80%;
     height: auto;
 }
-.teacherName{
-    border-radius: 4px; /* Bordas arredondadas para a área de histórico */
+
+.teacherName {
+    border-radius: 4px; /* Rounded borders for the history area */
     width: 200px;
     margin: 20px;
     text-align: center;
 }
+
 .description {
-    background-color: rgba(255, 255, 255, 0.474); /* Um pouco de transparência */
-    border-radius: 4px; /* Bordas arredondadas para a área de histórico */
+    background-color: rgba(255, 255, 255, 0.474); /* A bit of transparency */
+    border-radius: 4px; /* Rounded borders for the history area */
     margin: 20px;
     width: 200px;
     height: 80px;
     text-align: center;
     display: flex;
-    align-items: center; /* Alinha os itens filhos ao centro verticalmente */
-    justify-content: center; /* Alinha os itens filhos ao centro horizontalmente (opcional) */
+    align-items: center; /* Vertically centers child elements */
+    justify-content: center; /* Horizontally centers child elements (optional) */
 }
+
 .start-button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
 }
-.imagem-arredondada {
+
+.rounded-image {
     width: 200px;
     height: 200px;
     border-radius: 20px;
@@ -115,74 +128,74 @@ img {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
-    background-color: rgba(0, 123, 255, 0.8); /* Cor de fundo com transparência */
-    color: white; /* Cor do texto */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    background-color: rgba(0, 123, 255, 0.8); /* Background color with transparency */
+    color: white; /* Text color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .center-container {
-    width: 100%; /* Isso permite que o container central ocupe todo o espaço horizontal */
+    width: 100%; /* Allows the center container to take up the entire horizontal space */
     display: flex;
-    justify-content: center; /* Isso centraliza seu conteúdo */
+    justify-content: center; /* Centers its content */
 }
 
 .message {
-    width: 100%; /* Faz cada contêiner de mensagem ocupar a linha inteira */
-    display: flex; /* Permite o uso de flexbox para alinhamento */
-    margin-bottom: 10px; /* Espaçamento entre mensagens */
+    width: 100%; /* Makes each message container take up the full line */
+    display: flex; /* Enables Flexbox for alignment */
+    margin-bottom: 10px; /* Spacing between messages */
 }
 
 .message .content {
     padding: 5px;
     border-radius: 5px;
-    display: inline-block; /* Mantém o conteúdo da mensagem compacto */
-    max-width: 80%; /* Limita a largura máxima da mensagem para melhor leitura */
+    display: inline-block; /* Keeps message content compact */
+    max-width: 80%; /* Limits the maximum width of the message for better readability */
 }
 
 .user .content {
-    background-color: #DCF8C6; /* Cor de fundo para mensagens do usuário */
-    margin-left: auto; /* Alinha o conteúdo à direita */
+    background-color: #DCF8C6; /* Background color for user messages */
+    margin-left: auto; /* Aligns content to the right */
     text-align: right;
 }
 
 .bot .content {
-    background-color: #F0F0F0; /* Cor de fundo para mensagens do professor */
+    background-color: #F0F0F0; /* Background color for professor messages */
     text-align: left;
 }
 
 #chatContainer {
     margin-top: 100px;
-    display: flex; /* Ativa o Flexbox para o contêiner */
-    flex-direction: column; /* Organiza os filhos do contêiner em uma coluna */
-    align-items: flex-end; /* Alinha os itens filhos à direita */
-    width: 100%; /* Define a largura */
-    max-width: 600px; /* Largura máxima */
+    display: flex; /* Activates Flexbox for the container */
+    flex-direction: column; /* Organizes the children of the container in a column */
+    align-items: flex-end; /* Aligns child items to the right */
+    width: 100%; /* Sets the width */
+    max-width: 600px; /* Maximum width */
 }
 
 #chatHistory {
-    width: 100%; /* Define a largura */
-    border: 2px solid #007BFF; /* Bordas da área de histórico do chat */
+    width: 100%; /* Sets the width */
+    border: 2px solid #007BFF; /* Borders for the chat history area */
     padding: 10px;
-    border-radius: 4px; /* Bordas arredondadas para a área de histórico */
-    margin-bottom: 10px; /* Espaçamento entre o histórico do chat e o grupo de botões */
+    border-radius: 4px; /* Rounded borders for the history area */
+    margin-bottom: 10px; /* Spacing between chat history and button group */
     height: 500px;
-    overflow-y: auto; /* Permite rolagem vertical se necessário */
-    background-color: rgba(255, 255, 255, 0.8); /* Um pouco de transparência */
+    overflow-y: auto; /* Allows vertical scrolling if necessary */
+    background-color: rgba(255, 255, 255, 0.8); /* A bit of transparency */
 }
 
 #messageBox {
     width: 100%;
-    flex-grow: 1; /* Permite que o campo de texto cresça e ocupe mais espaço */
-    border: 2px solid #007BFF; /* Bordas do campo de texto */
-    border-radius: 4px; /* Bordas arredondadas para o campo de texto */
-    padding: 10px; /* Espaço interno no campo de texto */
+    flex-grow: 1; /* Allows the text field to expand and take up more space */
+    border: 2px solid #007BFF; /* Borders for the text field */
+    border-radius: 4px; /* Rounded borders for the text field */
+    padding: 10px; /* Inner spacing in the text field */
     margin: 0;
-    margin-bottom: 20px; /* Espaço abaixo do campo de texto */
+    margin-bottom: 20px; /* Space below the text field */
 }
 
 #sendButton, #resetButton {
-    background-color: #007BFF; /* Cor de fundo dos botões */
-    color: white; /* Cor do texto nos botões */
+    background-color: #007BFF; /* Background color of the buttons */
+    color: white; /* Text color of the buttons */
     border: none;
     border-radius: 4px;
     padding: 10px 20px;
@@ -192,5 +205,5 @@ img {
 }
 
 #sendButton:hover, #resetButton:hover {
-    background-color: #0056b3; /* Cor de fundo dos botões ao passar o mouse */
+    background-color: #0056b3; /* Background color of the buttons when hovering */
 }

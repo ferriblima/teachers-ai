@@ -1,56 +1,55 @@
 <?php
 
-// Definir o tipo de conteúdo para JSON
+// Set content type to JSON
 header('Content-Type: application/json');
 
-// Incluir o autoload do Composer
+// Include Composer autoload
 require_once __DIR__ . '/../../vendor/autoload.php';
-
 
 use Dotenv\Dotenv;
 
-// Carrega as variáveis de ambiente
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../../config'); // Ajuste para a raiz do projeto
+// Load environment variables
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../../config');
 $dotenv->load();
 
-// Importação da chave da API da OpenAI
+// Retrieve the OpenAI API key
 $apiKey = $_ENV['OPENAI_API_KEY'];
 
-// Verifica se a chave da API está definida
+// Verify that the API key is defined
 if (!$apiKey) {
     http_response_code(500);
-    echo json_encode(['error' => 'Chave da API da OpenAI não definida.']);
+    echo json_encode(['error' => 'OpenAI API key is not defined.']);
     exit;
 }
 
-// Configuração dos headers
+// Configure the headers
 $headers = [
     'Content-Type: application/json',
     "Authorization: Bearer $apiKey"
 ];
 
-// Captura o corpo da requisição enviada pelo frontend
+// Capture the request body sent by the frontend
 $data = file_get_contents('php://input');
 
-// Valida o JSON recebido
+// Validate the received JSON
 if (json_last_error() !== JSON_ERROR_NONE) {
     http_response_code(400);
-    echo json_encode(['error' => 'JSON inválido na requisição.']);
+    echo json_encode(['error' => 'Invalid JSON in the request.']);
     exit;
 }
 
-// Inicializa o cURL
+// Initialize cURL
 $ch = curl_init('https://api.openai.com/v1/chat/completions');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
-// Executa a requisição e captura a resposta
+// Execute the request and capture the response
 $response = curl_exec($ch);
 $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-// Verifica se houve erro no cURL
+// Check for cURL errors
 if (curl_errno($ch)) {
     $error_msg = curl_error($ch);
     http_response_code(500);
@@ -61,23 +60,23 @@ if (curl_errno($ch)) {
 
 curl_close($ch);
 
-// Verifica o código de status HTTP da resposta da API OpenAI
+// Check the HTTP status code of the OpenAI API response
 if ($httpCode !== 200) {
-    // Retorna a resposta da API OpenAI, que pode conter detalhes do erro
+    // Return the OpenAI API response, which may contain error details
     http_response_code($httpCode);
     echo $response;
     exit;
 }
 
-// Assegura que a resposta da API OpenAI está no formato JSON
+// Ensure the OpenAI API response is in JSON format
 $decodedResponse = json_decode($response, true);
 
 if (json_last_error() !== JSON_ERROR_NONE) {
     http_response_code(500);
-    echo json_encode(['error' => 'Resposta da API OpenAI não é um JSON válido.']);
+    echo json_encode(['error' => 'The OpenAI API response is not a valid JSON.']);
     exit;
 }
 
-// Retorna a resposta JSON da API OpenAI para o frontend
+// Return the OpenAI API response as JSON to the frontend
 echo json_encode($decodedResponse);
 ?>
